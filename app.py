@@ -39,6 +39,13 @@ def load_table():
 def read_table():
     df = pd.read_sql(query, conn)
     print(df.head())
+    df = pd.read_sql(
+    'SELECT order_status, count(1) AS order_count FROM orders GROUP BY order_status',
+    conn)
+    print(df)
+
+
+
 
 def p_orders_table():
     """
@@ -50,16 +57,15 @@ def p_orders_table():
     fp = f'{BASE_DIR}/{table_name}/{file_name}'
     json_reader = pd.read_json(fp, lines=True, chunksize=1000)
 
-    for df in json_reader
+    for df in json_reader:
         min_key = df['order_id'].min()
         max_key = df['order_id'].max()
         df.to_sql(table_name, conn, if_exists='append', index=False)
         print(f'Processed {table_name} with in the range of {min_key} and {max_key}')
 
 
-
 if __name__ == '__main__':
     # main()
-    #sql_table()
-    #read_table()
-    p_orders_table
+    # sql_table()
+    read_table()
+    #p_orders_table()
