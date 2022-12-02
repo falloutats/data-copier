@@ -9,6 +9,7 @@ def get_json_reader(BASE_DIR, table_name, chunksize=1000):
 
 
 if __name__ == "__main__":
+
     BASE_DIR = os.environ.get('BASE_DIR')
     table_name = os.environ.get('TABLE_NAME')
     json_reader = get_json_reader(BASE_DIR, table_name)

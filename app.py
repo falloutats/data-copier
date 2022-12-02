@@ -21,4 +21,5 @@ def process_table(BASE_DIR, conn, table_name):
 
 
 if __name__ == "__main__":
+
     main()
